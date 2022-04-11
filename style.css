@@ -3,34 +3,42 @@ body {
     padding: 10px;
 
 }
+
 .card {
     background-color: white;
-    width: auto;
-    height: 100px;
+    width: 100px;
+    height: 150px;
     border-radius: 20px;
-   box-shadow: 2px 2px 2px;    
+    box-shadow: 2px 2px 2px;
+    margin: 10px;
 }
+
 .top {
     height: 20%;
-   font-size: 20px;
+    font-size: 20px;
 
 }
+
 .center {
     height: 60%;
     font-size: 50px;
     text-align: center;
 }
+
 .buttom {
     transform: rotate(180deg);
     height: 20%;
-    font-size: 20px;    
+    font-size: 20px;
 }
+
 .blackSymbol {
     color: black;
 }
+
 .redSymbol {
     color: red;
 }
+
 input {
     width: 70px;
     padding: 0px 10px 0px 10px;
