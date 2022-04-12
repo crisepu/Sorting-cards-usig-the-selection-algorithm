@@ -5,6 +5,38 @@ let numberCardsArray = [];
 let onlyNumber = [];
 let symbolCardsArray = [];
 
+function cardGenerator(number, symbol) {
+    let divCard = document.createElement("div");
+    divCard.classList.add("card");
+    let divTop = document.createElement("div");
+    divCard.appendChild(divTop);
+    let divCenter = document.createElement("div");
+    divCard.appendChild(divCenter);
+    let divButtom = document.createElement("div");
+    divCard.appendChild(divButtom);
+
+    divCenter.classList.add("center");
+    divCenter.innerHTML = number;
+
+    if (symbol == "♠" || symbol == "♣") {
+        divTop.classList.add("blackSymbol")
+        divTop.classList.add("top")
+        divButtom.classList.add("blackSymbol")
+        divButtom.classList.add("buttom")
+        divTop.innerHTML = symbol;
+        divButtom.innerHTML = symbol;
+    }
+    if (symbol == "♥" || symbol == "♦") {
+        divTop.classList.add("redSymbol")
+        divTop.classList.add("top")
+        divButtom.classList.add("buttom")
+        divButtom.classList.add("redSymbol")
+        divTop.innerHTML = symbol;
+        divButtom.innerHTML = symbol;
+    }
+    return divCard;
+
+}
 
 buttonDraw.addEventListener('click', (e) => {
     if (inputNumber.value >= 1 && inputNumber.value <= 10) {
@@ -18,34 +50,7 @@ buttonDraw.addEventListener('click', (e) => {
             numberCardsArray[i] = numberArray[randomNumber];
             symbolCardsArray[i] = symbolArray[randomSymbol];
 
-            let divCard = document.createElement("div");
-            divCard.classList.add("card");
-            let divTop = document.createElement("div");
-            divCard.appendChild(divTop);
-            let divCenter = document.createElement("div");
-            divCard.appendChild(divCenter);
-            let divButtom = document.createElement("div");
-            divCard.appendChild(divButtom);
-
-            divCenter.classList.add("center");
-            divCenter.innerHTML = numberCardsArray[i];
-
-            if (symbolCardsArray[i] == "♠" || symbolCardsArray[i] == "♣") {
-                divTop.classList.add("blackSymbol")
-                divTop.classList.add("top")
-                divButtom.classList.add("blackSymbol")
-                divButtom.classList.add("buttom")
-                divTop.innerHTML = symbolCardsArray[i];
-                divButtom.innerHTML = symbolCardsArray[i];
-            }
-            if (symbolCardsArray[i] == "♥" || symbolCardsArray[i] == "♦") {
-                divTop.classList.add("redSymbol")
-                divTop.classList.add("top")
-                divButtom.classList.add("buttom")
-                divButtom.classList.add("redSymbol")
-                divTop.innerHTML = symbolCardsArray[i];
-                divButtom.innerHTML = symbolCardsArray[i];
-            }
+            let divCard = cardGenerator(numberCardsArray[i], symbolCardsArray[i]);
             unsortedDiv.appendChild(divCard);
 
         }
@@ -62,7 +67,7 @@ buttonSort.addEventListener('click', (e) => {
     let sortedDiv = document.querySelector("#sortedCards");
     let counter = 0;
 
-    for (let k=0;k<numberCardsArray.length; k++) {
+    for (let k = 0; k < numberCardsArray.length; k++) {
         onlyNumber[k] = numberCardsArray[k];
         if (numberCardsArray[k] == "J") {
             onlyNumber[k] = 11;
@@ -76,75 +81,39 @@ buttonSort.addEventListener('click', (e) => {
         if (numberCardsArray[k] == "A") {
             onlyNumber[k] = 1;
         }
-    } 
+    }
 
     for (let i = 0; i < onlyNumber.length; i++) {
-        for(let j=0; j<onlyNumber.length-1;j++){
-      
-        if (onlyNumber[j] > onlyNumber[j + 1]) {
-            let aux1 = numberCardsArray[j + 1];
-            numberCardsArray[j + 1] = numberCardsArray[j];
-            numberCardsArray[j] = aux1;
+        for (let j = 0; j < onlyNumber.length - 1; j++) {
 
-            let aux2 = symbolCardsArray[j + 1];
-            symbolCardsArray[j + 1] = symbolCardsArray[j];
-            symbolCardsArray[j] = aux2;
+            if (onlyNumber[j] > onlyNumber[j + 1]) {
+                let aux1 = numberCardsArray[j + 1];
+                numberCardsArray[j + 1] = numberCardsArray[j];
+                numberCardsArray[j] = aux1;
 
-            let aux3 = onlyNumber[j + 1];
-            onlyNumber[j + 1] = onlyNumber[j];
-            onlyNumber[j] = aux3;
+                let aux2 = symbolCardsArray[j + 1];
+                symbolCardsArray[j + 1] = symbolCardsArray[j];
+                symbolCardsArray[j] = aux2;
 
-            let iter = document.createElement("h1");
-            iter.innerHTML = counter;
-            sortedDiv.appendChild(iter);
-            counter = counter +1;
+                let aux3 = onlyNumber[j + 1];
+                onlyNumber[j + 1] = onlyNumber[j];
+                onlyNumber[j] = aux3;
 
-            for (let z = 0; z < numberCardsArray.length; z++) {
-                
+                let iter = document.createElement("h1");
+                iter.innerHTML = counter;
+                sortedDiv.appendChild(iter);
+                counter = counter + 1;
 
-                let divCard = document.createElement("div");
-                divCard.classList.add("card");
-                let divTop = document.createElement("div");
-                divCard.appendChild(divTop);
-                let divCenter = document.createElement("div");
-                divCard.appendChild(divCenter);
-                let divButtom = document.createElement("div");
-                divCard.appendChild(divButtom);
+                for (let z = 0; z < numberCardsArray.length; z++) {
 
-                divCenter.classList.add("center");
-                divCenter.innerHTML = numberCardsArray[z];
+                    let divCard = cardGenerator(numberCardsArray[z], symbolCardsArray[z]);
+                    sortedDiv.appendChild(divCard);
 
-                if (symbolCardsArray[z] == "♠" || symbolCardsArray[z] == "♣") {
-                    divTop.classList.add("blackSymbol")
-                    divTop.classList.add("top")
-                    divButtom.classList.add("blackSymbol")
-                    divButtom.classList.add("buttom")
-                    divTop.innerHTML = symbolCardsArray[z];
-                    divButtom.innerHTML = symbolCardsArray[z];
                 }
-                if (symbolCardsArray[z] == "♥" || symbolCardsArray[z] == "♦") {
-                    divTop.classList.add("redSymbol")
-                    divTop.classList.add("top")
-                    divButtom.classList.add("buttom")
-                    divButtom.classList.add("redSymbol")
-                    divTop.innerHTML = symbolCardsArray[z];
-                    divButtom.innerHTML = symbolCardsArray[z];
-                }
-                sortedDiv.appendChild(divCard);
-
-                
-
-
-
-
-
             }
 
-            
 
         }
-
-
-       }   }
+    }
 
 });
