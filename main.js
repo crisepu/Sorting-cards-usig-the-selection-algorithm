@@ -102,7 +102,7 @@ buttonSort.addEventListener('click', (e) => {
                 let iter = document.createElement("h1");
                 iter.innerHTML = counter;
                 sortedDiv.appendChild(iter);
-                counter = counter + 1;
+                counter++;
 
                 for (let z = 0; z < numberCardsArray.length; z++) {
 
