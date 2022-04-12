@@ -60,13 +60,11 @@ buttonDraw.addEventListener('click', (e) => {
 
 });
 
-
-
-
 buttonSort.addEventListener('click', (e) => {
     let sortedDiv = document.querySelector("#sortedCards");
     let counter = 0;
 
+    //Reemplazo de letras por numeros
     for (let k = 0; k < numberCardsArray.length; k++) {
         onlyNumber[k] = numberCardsArray[k];
         if (numberCardsArray[k] == "J") {
@@ -83,37 +81,38 @@ buttonSort.addEventListener('click', (e) => {
         }
     }
 
+    // Ordenamiento por seleccion
     for (let i = 0; i < onlyNumber.length; i++) {
-        for (let j = 0; j < onlyNumber.length - 1; j++) {
-
-            if (onlyNumber[j] > onlyNumber[j + 1]) {
-                let aux1 = numberCardsArray[j + 1];
-                numberCardsArray[j + 1] = numberCardsArray[j];
-                numberCardsArray[j] = aux1;
-
-                let aux2 = symbolCardsArray[j + 1];
-                symbolCardsArray[j + 1] = symbolCardsArray[j];
-                symbolCardsArray[j] = aux2;
-
-                let aux3 = onlyNumber[j + 1];
-                onlyNumber[j + 1] = onlyNumber[j];
-                onlyNumber[j] = aux3;
-
-                let iter = document.createElement("h1");
-                iter.innerHTML = counter;
-                sortedDiv.appendChild(iter);
-                counter++;
-
-                for (let z = 0; z < numberCardsArray.length; z++) {
-
-                    let divCard = cardGenerator(numberCardsArray[z], symbolCardsArray[z]);
-                    sortedDiv.appendChild(divCard);
-
-                }
+        let min = i;
+        for (let j = i + 1; j < onlyNumber.length; j++) {
+            if (onlyNumber[j] < onlyNumber[min]) {
+                min = j;
             }
+        }
+        if (min != i) {
+            let aux1 = numberCardsArray[i];
+            numberCardsArray[i] = numberCardsArray[min];
+            numberCardsArray[min] = aux1;
 
+            let aux2 = symbolCardsArray[i];
+            symbolCardsArray[i] = symbolCardsArray[min];
+            symbolCardsArray[min] = aux2;
 
+            let aux3 = onlyNumber[i];
+            onlyNumber[i] = onlyNumber[min];
+            onlyNumber[min] = aux3;
+
+            let iter = document.createElement("h1");
+            iter.innerHTML = counter;
+            sortedDiv.appendChild(iter);
+            counter++;
+
+            for (let z = 0; z < numberCardsArray.length; z++) {
+
+                let divCard = cardGenerator(numberCardsArray[z], symbolCardsArray[z]);
+                sortedDiv.appendChild(divCard);
+
+            }
         }
     }
-
 });
