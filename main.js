@@ -74,7 +74,7 @@ buttonSort.addEventListener('click', (e) => {
             onlyNumber[k] = 13;
         }
         if (numberCardsArray[k] == "A") {
-            onlyNumber[k] = 14;
+            onlyNumber[k] = 1;
         }
     } 
 
